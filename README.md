@@ -1,9 +1,8 @@
 # Catching array change in React Hooks with useEffect
 
-It's a little bit tricky and you need to understand the way JS copy Array data type.
+When you just update state with a copy of “oldUncaught”, the reference is a same of the preview state.
 
-When you just copy the array like "oldUncaught", the reference is a copy of "uncaughtChange".
+When you use “oldCaught” inside spread operator, the new state is assigned to a new reference different from initial state.
 
-When you use spread operator "oldArray" is assigned to a new reference different from "caughChange".
+In JS array are copied by reference, so if you don’t use spread operator, useEffect can’t catch the change. Voilà !
 
-In JS array are copied by reference so if you don't use spread operator, useEffect can't catch the change. Voilà !

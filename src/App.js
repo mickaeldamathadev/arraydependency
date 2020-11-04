@@ -1,7 +1,6 @@
-import './App.css';
 import React,{useState,useEffect} from 'react'
 
-function App() {
+export default function App() {
 
   const [ caughtChange,setCaught ] = useState([])
 
@@ -9,11 +8,11 @@ function App() {
 
   const click = (e) => {
 
-    let oldCaught = [...caughtChange]
-    let oldUncaught = [uncaughtChange]
+    let oldCaught = caughtChange
+    let oldUncaught = uncaughtChange
 
     oldCaught.includes(e.target.name) ? oldCaught.splice(oldCaught.indexOf(e.target.name),1) : oldCaught.push(e.target.name)
-    setCaught(caught => oldCaught)
+    setCaught(caught => [...oldCaught]) // Using spread operator to update state
 
     /**
      * When you use spread operator "oldArray" is assigned to a new reference different from "caughChange".
@@ -21,12 +20,9 @@ function App() {
      * In JS array are copied by reference so if you don't use spread operator, useEffect can't catch the change. Voilà !
      */
 
-  
      oldUncaught.includes(e.target.name) ? oldUncaught.splice(oldUncaught.indexOf(e.target.name),1) : oldUncaught.push(e.target.name)
      setUncaught(uncaught => oldUncaught)
-
-    
-    
+  
   }
 
   useEffect(() => {
@@ -45,4 +41,5 @@ function App() {
   );
 }
 
-export default App;
+
+
