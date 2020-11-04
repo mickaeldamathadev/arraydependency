@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React,{useState,useEffect} from 'react'
 
 function App() {
+
+  const [ caughtChange,setCaught ] = useState([])
+
+  const [ uncaughtChange,setUncaught ] = useState([]) 
+
+  const click = (e) => {
+
+    let oldCaught = caughtChange
+    let oldUncaught = uncaughtChange
+
+    oldCaught.includes(e.target.name) ? oldCaught.splice(oldCaught.indexOf(e.target.name),1) : oldCaught.push(e.target.name)
+    setCaught(caught => [...oldCaught])
+
+    oldUncaught.includes(e.target.name) ? oldUncaught.splice(oldUncaught.indexOf(e.target.name),1) : oldUncaught.push(e.target.name)
+    setUncaught(uncaught => oldUncaught)
+
+    
+  }
+
+  useEffect(() => {
+    console.log('Change has been caught by useEffect at ' +  new Date().toLocaleTimeString())
+  },[caughtChange])
+
+  useEffect(() => {
+    // This instruction will never been executed
+    console.log('Change has not been caught by useEffect')
+  },[uncaughtChange])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Bonjour ! ca va ?
-        </a>
-      </header>
+      <button onClick={(e)=>click(e)} name='value'> click </button>
     </div>
   );
 }
