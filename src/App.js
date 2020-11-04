@@ -15,9 +15,16 @@ function App() {
     oldCaught.includes(e.target.name) ? oldCaught.splice(oldCaught.indexOf(e.target.name),1) : oldCaught.push(e.target.name)
     setCaught(caught => [...oldCaught])
 
+    /**
+     * When you use spread operator to update an array state, 
+     * the reference of all the array change and not only the value inside so useEffect can catch the change
+     */
+
+
     oldUncaught.includes(e.target.name) ? oldUncaught.splice(oldUncaught.indexOf(e.target.name),1) : oldUncaught.push(e.target.name)
     setUncaught(uncaught => oldUncaught)
 
+    
     
   }
 
