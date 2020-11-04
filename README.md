@@ -1,6 +1,6 @@
 # Catching array change in React Hooks with useEffect
 
-It's a little bit trucky and you need to understand the way JS copy Array data type.
+It's a little bit tricky and you need to understand the way JS copy Array data type.
 
 When you just copy the array like "oldUncaught", the reference is a copy of "uncaughtChange".
 
